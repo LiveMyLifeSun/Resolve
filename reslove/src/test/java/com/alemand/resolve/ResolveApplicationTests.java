@@ -31,10 +31,11 @@ public class ResolveApplicationTests {
     @Test
     public void contextLoads() throws IOException {
 
-        File file = new File("D:\\新建 Microsoft Office Excel 2007 工作表.xlsx");
-        List<Map<String, String>> maps = resolveExcel.resolveExcelString(file);
-        if (CollectionUtil.isNotEmpty(maps)) {
-            for (Map<String, String> map : maps) {
+        File file = new File("D:\\副本修改运营数据统计报表.xlsx");
+        List<List<Map<String, String>>> list = resolveExcel.resolveExcelString(file);
+        if (CollectionUtil.isNotEmpty(list)) {
+            List<Map<String, String>> list1 = list.get(1);
+            for (Map<String, String> map : list1) {
                 Set<Map.Entry<String, String>> entries = map.entrySet();
                 if (CollectionUtil.isNotEmpty(entries)) {
                     for (Map.Entry<String, String> entry : entries) {

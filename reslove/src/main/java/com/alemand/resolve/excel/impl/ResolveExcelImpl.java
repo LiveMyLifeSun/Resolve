@@ -34,9 +34,9 @@ public class ResolveExcelImpl implements ResolveExcel {
 
 
     @Override
-    public List<Map<String, String>> resolveExcelString(File file) throws IOException {
+    public List<List<Map<String, String>>> resolveExcelString(File file) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(file);
-        List<Map<String, String>> list;
+        List<List<Map<String, String>>> list;
         if (file.getName().endsWith(".xls")) {
             list = resolveExcelString(fileInputStream, EXCEL_TYPE.SUFFIX_2003);
         } else {
@@ -46,8 +46,8 @@ public class ResolveExcelImpl implements ResolveExcel {
     }
 
     @Override
-    public List<Map<String, String>> resolveExcelString(InputStream inputStream, EXCEL_TYPE excel) throws IOException {
-        List<Map<String, String>> stringList = new ArrayList<>();
+    public List<List<Map<String, String>>> resolveExcelString(InputStream inputStream, EXCEL_TYPE excel) throws IOException {
+        List<List<Map<String, String>>> result = new ArrayList<>();
         Workbook workbook = null;
         switch (excel) {
             case SUFFIX_2003:
@@ -71,6 +71,7 @@ public class ResolveExcelImpl implements ResolveExcel {
             for (int j = 1; j <= lastRowNum; j++) {
                 //获取行
                 Row row = sheet.getRow(j);
+                List<Map<String, String>> stringList = new ArrayList<>();
                 //获取每个单元格
                 short lastCellNum = row.getLastCellNum();
                 for (int k = 0; k <= lastCellNum; k++) {
@@ -84,7 +85,6 @@ public class ResolveExcelImpl implements ResolveExcel {
                             HashMap<String, String> StringMap = new HashMap<>(1);
                             StringMap.put(firstRowCell.getStringCellValue(), stringCellValue);
                             stringList.add(StringMap);
-
                         } else {
                             //如果为空的话需要将int的默认值double以及String的默认值添加进去
                             HashMap<String, String> StringMap = new HashMap<>(1);
@@ -93,17 +93,17 @@ public class ResolveExcelImpl implements ResolveExcel {
                         }
                     }
                 }
+                result.add(stringList);
             }
-
         }
-        return stringList;
+        return result;
     }
 
 
     @Override
-    public List<Map<String, Integer>> resolveExcelInt(File file) throws IOException {
+    public List<List<Map<String, Integer>>> resolveExcelInt(File file) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(file);
-        List<Map<String, Integer>> list;
+        List<List<Map<String, Integer>>> list;
         if (file.getName().contains(".xls")) {
             list = resolveExcelInt(fileInputStream, EXCEL_TYPE.SUFFIX_2003);
         } else {
@@ -113,8 +113,8 @@ public class ResolveExcelImpl implements ResolveExcel {
     }
 
     @Override
-    public List<Map<String, Integer>> resolveExcelInt(InputStream inputStream, EXCEL_TYPE excel) throws IOException {
-        List<Map<String, Integer>> intList = new ArrayList<>();
+    public List<List<Map<String, Integer>>> resolveExcelInt(InputStream inputStream, EXCEL_TYPE excel) throws IOException {
+        List<List<Map<String, Integer>>> result = new ArrayList<>();
         Workbook workbook = null;
         switch (excel) {
             case SUFFIX_2003:
@@ -137,6 +137,7 @@ public class ResolveExcelImpl implements ResolveExcel {
             //重第二行开始
             for (int j = 1; j <= lastRowNum; j++) {
                 //获取行
+                List<Map<String, Integer>> intList = new ArrayList<>();
                 Row row = sheet.getRow(j);
                 //获取每个单元格
                 short lastCellNum = row.getLastCellNum();
@@ -156,16 +157,17 @@ public class ResolveExcelImpl implements ResolveExcel {
                         intList.add(integerMap);
                     }
                 }
+                result.add(intList);
             }
 
         }
-        return intList;
+        return result;
     }
 
     @Override
-    public List<Map<String, Double>> resolveExcelDouble(File file) throws IOException {
+    public List<List<Map<String, Double>>> resolveExcelDouble(File file) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(file);
-        List<Map<String, Double>> list;
+        List<List<Map<String, Double>>> list;
         if (file.getName().contains(".xls")) {
             list = resolveExcelDouble(fileInputStream, EXCEL_TYPE.SUFFIX_2003);
         } else {
@@ -175,8 +177,8 @@ public class ResolveExcelImpl implements ResolveExcel {
     }
 
     @Override
-    public List<Map<String, Double>> resolveExcelDouble(InputStream inputStream, EXCEL_TYPE excel) throws IOException {
-        List<Map<String, Double>> doubleList = new ArrayList<>();
+    public List<List<Map<String, Double>>> resolveExcelDouble(InputStream inputStream, EXCEL_TYPE excel) throws IOException {
+        List<List<Map<String, Double>>> result = new ArrayList<>();
         Workbook workbook = null;
         switch (excel) {
             case SUFFIX_2003:
@@ -200,6 +202,7 @@ public class ResolveExcelImpl implements ResolveExcel {
             for (int j = 1; j <= lastRowNum; j++) {
                 //获取行
                 Row row = sheet.getRow(j);
+                List<Map<String, Double>> doubleList = new ArrayList<>();
                 //获取每个单元格
                 short lastCellNum = row.getLastCellNum();
                 for (int k = 0; k <= lastCellNum; k++) {
@@ -218,10 +221,11 @@ public class ResolveExcelImpl implements ResolveExcel {
                         doubleList.add(doubleMap);
                     }
                 }
+                result.add(doubleList);
             }
 
         }
-        return doubleList;
+        return result;
     }
 
 

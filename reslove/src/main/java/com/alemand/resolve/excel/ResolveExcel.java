@@ -25,7 +25,7 @@ public interface ResolveExcel {
      * @return 解析到的Excel结果
      * @throws IOException IO异常
      */
-    List<Map<String, String>> resolveExcelString(File file) throws IOException;
+    List<List<Map<String, String>>> resolveExcelString(File file) throws IOException;
 
 
     /**
@@ -36,7 +36,7 @@ public interface ResolveExcel {
      * @return 解析到的Excel结果
      * @throws IOException IO异常
      */
-    List<Map<String, String>> resolveExcelString(InputStream inputStream, EXCEL_TYPE excel) throws IOException;
+    List<List<Map<String, String>>> resolveExcelString(InputStream inputStream, EXCEL_TYPE excel) throws IOException;
 
 
     /**
@@ -46,7 +46,7 @@ public interface ResolveExcel {
      * @return 解析到的Excel结果
      * @throws IOException IO异常
      */
-    List<Map<String, Integer>> resolveExcelInt(File file) throws IOException;
+    List<List<Map<String, Integer>>> resolveExcelInt(File file) throws IOException;
 
     /**
      * 单元格的全部格式为int
@@ -56,7 +56,7 @@ public interface ResolveExcel {
      * @return 解析到的Excel结果
      * @throws IOException IO异常
      */
-    List<Map<String, Integer>> resolveExcelInt(InputStream inputStream, EXCEL_TYPE excel) throws IOException;
+    List<List<Map<String, Integer>>> resolveExcelInt(InputStream inputStream, EXCEL_TYPE excel) throws IOException;
 
 
     /**
@@ -66,7 +66,7 @@ public interface ResolveExcel {
      * @return 解析到的Excel结果
      * @throws IOException IO异常
      */
-    List<Map<String, Double>> resolveExcelDouble(File file) throws IOException;
+    List<List<Map<String, Double>>> resolveExcelDouble(File file) throws IOException;
 
     /**
      * 单元格的全部格式为double
@@ -76,7 +76,7 @@ public interface ResolveExcel {
      * @return 解析到的Excel结果
      * @throws IOException IO异常
      */
-    List<Map<String, Double>> resolveExcelDouble(InputStream inputStream, EXCEL_TYPE excel) throws IOException;
+    List<List<Map<String, Double>>> resolveExcelDouble(InputStream inputStream, EXCEL_TYPE excel) throws IOException;
 
 
 }
