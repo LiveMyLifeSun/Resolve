@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
 /**
@@ -38,6 +43,16 @@ public class ResolveExcelController {
         Object result;
         try {
             result = resolveExcelService.resolveExcel(file);
+            //如果需要将文件放到服务其中加以下代码
+           /* try {
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(file.getOriginalFilename())));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }*/
         } catch (BusinessException e) {
             e.printStackTrace();
             return ApiResponse.failOf(-1, e.getErrMsg());

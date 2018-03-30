@@ -13,6 +13,7 @@ import lombok.Data;
  * @author Alemand
  * @since 2018/3/19
  */
+@Data
 public class ReqImportClient {
 
     @SerializedName("userName")
@@ -29,35 +30,4 @@ public class ReqImportClient {
     @Expose
     private String groupID;
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getLoginName() {
-        return loginName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getGroupID() {
-        return groupID;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setGroupID(String groupID) {
-        this.groupID = groupID;
-    }
 }

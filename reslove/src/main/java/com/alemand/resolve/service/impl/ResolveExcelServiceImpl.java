@@ -16,6 +16,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -30,7 +34,9 @@ import java.util.regex.Pattern;
  */
 @Service("resolveExcelServiceImpl")
 public class ResolveExcelServiceImpl implements ResolveExcelService {
-
+    /**
+     *打印日志
+     */
     private static final Log logger = LogFactory.get();
     /**
      * 注册url
@@ -48,7 +54,6 @@ public class ResolveExcelServiceImpl implements ResolveExcelService {
 
     @Override
     public List<ReqImportClient> resolveExcel(MultipartFile file) throws BusinessException {
-
 
         List<ReqImportClient> list = new ArrayList<>();
         if (file == null) {
@@ -118,7 +123,9 @@ public class ResolveExcelServiceImpl implements ResolveExcelService {
                 }
             }
         }
+
         return list;
+
     }
 
 
