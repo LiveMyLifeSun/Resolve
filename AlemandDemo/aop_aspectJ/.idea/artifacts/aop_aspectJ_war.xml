@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="aop_aspectJ:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="aop_aspectJ.war">
+      <element id="artifact" artifact-name="aop_aspectJ:war exploded" />
+    </root>
+  </artifact>
+</component>
